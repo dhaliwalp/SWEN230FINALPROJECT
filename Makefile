@@ -1,8 +1,10 @@
 build:
-	docker build -t flask-docker .
+	docker build -t flask-app . 
 
 run:
-	docker run -p 9090:9090 -v $(PWD):/app flask-docker
+	docker run -p 9090:9090 flask-app
 
 clean:
-	docker rmi -f flask-docker
+	docker rm -f $$(docker ps -aq)
+
+.PHONY: build run clean
